@@ -69,7 +69,7 @@ public class DAO {
 	
 	public void insertContact (JavaBeans contact) {
 		
-		//Creating Command String
+		//Creating Command String with ? Parameters to be replaced later on the Method
 		String create = "insert into contacts (conName, conPhone, conEmail) values (?,?,?)";
 		//Try Catch for DB possible Connection Exceptions
 		try {
@@ -77,13 +77,13 @@ public class DAO {
 			Connection con = connect();
 			//Preparing Query for its execution at the DataBase
 			PreparedStatement pst = con.prepareStatement(create);
-			//Replacing the ? parameters for the JavaBeans variables' content
+			//Replacing the ? parameters with the JavaBeans variables' content
 			pst.setString(1, contact.getConName());
 			pst.setString(2, contact.getConPhone());
 			pst.setString(3, contact.getConEmail());
 			//Execute Query
 			pst.executeUpdate();
-			//Close DataBase Connection to ensure proper Performance and Security
+			//Closing DataBase Connection to ensure proper Performance and Security
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -102,6 +102,8 @@ public class DAO {
     	
     	String read = "select * from contacts order by conName";
     	
+    	//Try Catch for DB possible Connection Exceptions
+    	
     	try {
     		
     		//Opening DB Connection
@@ -110,7 +112,7 @@ public class DAO {
 			//Preparing Query to be Executed at the DataBase
     		PreparedStatement pst = con.prepareStatement(read);
     		
-    		//Temporarily storing DataBase Result in an Object and Executing Query
+    		//Temporarily storing DataBase Result in a ResultSet Object and Executing Query
     		ResultSet rs = pst.executeQuery();
     		
     		
@@ -131,6 +133,8 @@ public class DAO {
 
     		}
     		
+    		//Closing DataBase Connection to ensure proper Performance and Security
+
     		con.close();
     		
     		return contactsList;
@@ -143,7 +147,64 @@ public class DAO {
     }
 	
 	
-	
+	//CRUD UPDATE
+    
+    //Method for Contact Selection
+    
+    public void selectContact(JavaBeans contact) {
+    	
+    	//Creating ID variable to receive JavaBeans object ID (OPTIONAL)
+    	
+    	int id = Integer.parseInt(contact.getConId());
+    	
+    	//Creating Command String with ? Parameters to be replaced later on the Method
+    	
+    	String select2 = "select * from contacts where conId = ?";
+    	
+    	//Try Catch for DB possible Connection Exceptions
+    	
+    	try {
+    		
+    		//Opening DB Connection
+    		
+    		Connection con = connect();
+    		
+    		//Preparing Query to be Executed at the DataBase
+    		
+    		PreparedStatement pst = con.prepareStatement(select2);
+    		
+			//Replacing the ? parameters with the JavaBeans variables' content
+    		
+    		pst.setInt(1, id);
+    		
+    		//Temporarily storing DataBase Result in a ResultSet Object and Executing Query
+
+    		ResultSet rs = pst.executeQuery();
+    		
+    		/*while Loop used to set JavaBeans attributes with ResultSet Object's Elements 
+    		according to its Indexed Categories (Column  Number) ([id - 1] [name - 2] [phone-3] [email - 4])
+    		*/
+    		while(rs.next()) {
+    			
+    			contact.setConId(rs.getString(1));
+    			contact.setConName(rs.getString(2));
+    			contact.setConPhone(rs.getString(3));
+    			contact.setConEmail(rs.getString(4));
+    			
+    		}
+    		
+    		//Close DataBase Connection to ensure proper Performance and Security
+
+    		con.close();
+    		
+    		
+			
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			
+		}
+    }
 	
 	
 	

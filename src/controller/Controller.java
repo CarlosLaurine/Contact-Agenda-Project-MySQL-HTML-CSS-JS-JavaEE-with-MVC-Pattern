@@ -125,6 +125,15 @@ protected void listContact(HttpServletRequest request, HttpServletResponse respo
 	
 	//Setting JavaBeans Variable after Test
 	contact.setConId(conId);
+	//Run selectContact Method
+	dao.selectContact(contact);
+	//Test to confirm the Receipt of Selected Contact from DB through DAO and Javabeans by Controller
+	/*System.out.println(contact.getConId());
+	System.out.println(contact.getConName());
+	System.out.println(contact.getConPhone());
+	System.out.println(contact.getConEmail());
+	*/
+	
 	
 }
 }
