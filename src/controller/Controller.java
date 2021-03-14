@@ -134,7 +134,18 @@ protected void listContact(HttpServletRequest request, HttpServletResponse respo
 	System.out.println(contact.getConEmail());
 	*/
 	
+	//Setting Form's Attributes Values with JavaBeans Content
 	
+	request.setAttribute("id", contact.getConId());
+	request.setAttribute("name", contact.getConName());
+	request.setAttribute("phone", contact.getConPhone());
+	request.setAttribute("email", contact.getConEmail());
+	
+	//Dispatching Attribute Sets to edit.jsp Document 
+	
+	RequestDispatcher rd = request.getRequestDispatcher("edit.jsp");
+	
+	rd.forward(request, response);
 }
 }
 
