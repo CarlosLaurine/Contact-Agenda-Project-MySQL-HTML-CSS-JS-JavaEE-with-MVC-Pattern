@@ -17,11 +17,8 @@ import model.JavaBeans;
  * Servlet implementation class Controller
  */
 
-//URL Patterns 
-
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert" })
-
-
+//URL Patterns for Servlet Requests
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
@@ -44,6 +41,9 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 			
 			String action = request.getServletPath();
+			
+			//Testing Request connection with Servlet at the Console
+			System.out.println(action);
 	       
 	        if(action.equals("/main")) {
 	        	
@@ -51,6 +51,9 @@ public class Controller extends HttpServlet {
 	        }
 	        else if(action.equals("/insert")) {
 	        	newContact(request, response);
+	        }
+	        else if(action.equals("/select")) {
+	        	listContact(request, response);
 	        }
 	        else {
 	        	response.sendRedirect("index.html");
@@ -111,4 +114,19 @@ protected void newContact(HttpServletRequest request, HttpServletResponse respon
 	response.sendRedirect("main");
 	
 }
+
+//Contact Edition Method
+
+protected void listContact(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	//Using a String Variable receiving the id Parameter from the Selected Contact sent by agenda.jsp
+	String conId = request.getParameter("conId");
+	//Testing specific Contact ID Parameter Received by the Servlet's Accuracy
+	//System.out.println(conId);
+	
+	//Setting JavaBeans Variable after Test
+	contact.setConId(conId);
+	
 }
+}
+
+

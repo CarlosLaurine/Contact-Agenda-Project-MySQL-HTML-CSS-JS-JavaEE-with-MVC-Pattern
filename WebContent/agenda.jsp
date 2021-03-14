@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
+  
 <%@ page import = "model.JavaBeans"    %>
 <%@ page import = "java.util.ArrayList"%>
 
@@ -44,7 +44,8 @@
 			<th>(NAME)</th>
 			<th>(PHONE)</th>
 			<th>(E-MAIL)</th>
-			
+			<!-- Adding Options Header -->
+			<th>(OPTIONS)</th>
 		</tr>	
 	</thead>
 	
@@ -59,7 +60,8 @@
 			<td><%= contact.getConName() %></td>	
 			<td><%= contact.getConPhone() %></td>	
 			<td><%= contact.getConEmail() %></td>	
-			
+			<!-- Adding Edit Button to Each Contact Row -->
+			<td><a href="select?conId=<%=contact.getConId()%>" class="button1" > Edit </a></td>
 		</tr>
 		
 		<%} %>
