@@ -14,7 +14,7 @@
 	
 	<!--Setting action to be catch at Controller's urlPatterns-->
 	
-	<form name = "formContact" action="">
+	<form name = "formContact" action="update" >
 		<table>
 		
 		<!-- Using "readonly" inside id textbox tag in order to disable Id editing by the user (only read) -->

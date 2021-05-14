@@ -153,9 +153,6 @@ public class DAO {
     
     public void selectContact(JavaBeans contact) {
     	
-    	//Creating ID variable to receive JavaBeans object ID (OPTIONAL)
-    	
-    	int id = Integer.parseInt(contact.getConId());
     	
     	//Creating Command String with ? Parameters to be replaced later on the Method
     	
@@ -175,7 +172,7 @@ public class DAO {
     		
 			//Replacing the ? parameters with the JavaBeans variables' content
     		
-    		pst.setInt(1, id);
+    		pst.setString(1, contact.getConId());
     		
     		//Temporarily storing DataBase Result in a ResultSet Object and Executing Query
 
@@ -206,6 +203,35 @@ public class DAO {
 		}
     }
 	
-	
+    //Editing Contact
+	public void updateContact(JavaBeans contact) {
+		
+		String edit = "update contacts set conname=?, conphone=?, conemail=? where conid =?";
+		
+		try {
+			Connection con = connect();
+			
+			PreparedStatement pst = con.prepareStatement(edit);
+			
+			pst.setString(1, contact.getConName());
+			pst.setString(2, contact.getConPhone());
+			pst.setString(3, contact.getConEmail());
+			pst.setString(4, contact.getConId());
+			
+			pst.executeUpdate();
+			
+			con.close();
+
+			
+		}
+		
+		catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			
+		}
+
+		
+	}
 	
 }

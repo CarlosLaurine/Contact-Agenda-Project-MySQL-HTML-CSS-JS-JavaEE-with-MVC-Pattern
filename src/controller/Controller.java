@@ -18,7 +18,7 @@ import model.JavaBeans;
  */
 
 //URL Patterns for Servlet Requests
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
@@ -54,6 +54,9 @@ public class Controller extends HttpServlet {
 	        }
 	        else if(action.equals("/select")) {
 	        	listContact(request, response);
+	        }
+	        else if(action.equals("/update")) {
+	        	updateContact(request, response);
 	        }
 	        else {
 	        	response.sendRedirect("index.html");
@@ -147,6 +150,28 @@ protected void listContact(HttpServletRequest request, HttpServletResponse respo
 	
 	rd.forward(request, response);
 }
+
+//Contact Update Method
+
+protected void updateContact(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	
+	//Testing specific Contact ID Parameter Received by the Servlet's Accuracy
+	//System.out.println(request.getParameter("id"));
+	//System.out.println(request.getParameter("name"));
+	//System.out.println(request.getParameter("phone"));
+	//System.out.println(request.getParameter("email"));
+	
+	contact.setConId(request.getParameter("id"));
+	contact.setConName(request.getParameter("name"));
+	contact.setConPhone(request.getParameter("phone"));
+	contact.setConEmail(request.getParameter("email"));
+	
+	dao.updateContact(contact);
+	
+	//Redirecting to agenda.jsp Page with the respective Updated Data
+	response.sendRedirect("main");
+}
+
 }
 
 

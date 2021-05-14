@@ -60,6 +60,7 @@
 			<td><%= contact.getConName() %></td>	
 			<td><%= contact.getConPhone() %></td>	
 			<td><%= contact.getConEmail() %></td>	
+			
 			<!-- Adding Edit Button to Each Contact Row -->
 			<td><a href="select?conId=<%=contact.getConId()%>" class="button1" > Edit </a></td>
 		</tr>
