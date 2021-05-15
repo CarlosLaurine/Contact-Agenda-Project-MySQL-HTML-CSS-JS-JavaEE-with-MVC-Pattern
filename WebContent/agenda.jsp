@@ -6,7 +6,7 @@
 
 
 <!-- CREATING DYNAMIC ARRAY TO RECEIVE AND PROCESS ATTRIBUTE "contacts"-->
-<%
+<%	@SuppressWarnings(value = "unchecked" )
 	ArrayList <JavaBeans> contactsList = (ArrayList <JavaBeans>) request.getAttribute("contacts");
 	
 	/* Test for List Receipt Confirmation
@@ -35,6 +35,7 @@
 
 	<h1>Contact Agenda</h1>
 	<a href="new.html" class="button1">New Contact</a>
+	<a href="report" class="button2">Generate Report</a>
 	
 	<table id="table">
 	

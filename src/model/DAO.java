@@ -234,4 +234,26 @@ public class DAO {
 		
 	}
 	
+	//Deleting Contact
+		public void deleteContact(JavaBeans contact) {
+			
+			String deletion = "delete from contacts WHERE conid = " + contact.getConId();
+			
+			try {
+				
+				Connection con = connect();
+				
+				PreparedStatement pst = con.prepareStatement(deletion);
+				pst.execute();
+				
+				con.close();
+				
+			} catch (Exception e) {
+				
+				System.out.println(e.getMessage());
+
+				
+			}
+		}
+	
 }
