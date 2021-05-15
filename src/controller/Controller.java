@@ -19,28 +19,39 @@ import com.itextpdf.text.pdf.PdfWriter;
 import model.DAO;
 import model.JavaBeans;
 
+// TODO: Auto-generated Javadoc
 /**
- * Servlet implementation class Controller
+ * Servlet implementation class Controller.
  */
 
-//URL Patterns for Servlet Requests
 @WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report" })
 public class Controller extends HttpServlet {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The dao. */
 	DAO dao = new DAO();
+	
+	/** The contact. */
 	JavaBeans contact = new JavaBeans();
 
 	/**
+	 * Instantiates a new controller.
+	 *
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Controller() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @throws IOException
-	 * @throws ServletException
+	 * Do get.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -49,14 +60,13 @@ public class Controller extends HttpServlet {
 
 		String action = request.getServletPath();
 
-		// Testing Request connection with Servlet at the Console
 		System.out.println(action);
 
 		if (action.equals("/main")) {
 
 			contacts(request, response);
 		} else if (action.equals("/insert")) {
-			newContact(request, response);
+			insertContact(request, response);
 		} else if (action.equals("/select")) {
 			listContact(request, response);
 		} else if (action.equals("/update")) {
@@ -70,30 +80,21 @@ public class Controller extends HttpServlet {
 		}
 	}
 
+/**
+ * Contacts.
+ *
+ * @param request the request
+ * @param response the response
+ * @throws IOException Signals that an I/O exception has occurred.
+ * @throws ServletException the servlet exception
+ */
 //List Contacts
 	protected void contacts(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		// Creating an Object that will receive JavaBeans data from the mySQL DataBase
 		ArrayList<JavaBeans> contactsList = dao.listContacts();
 
-		/*
-		 * Test of List Receipt for (JavaBeans contact : contactsList) {
-		 * 
-		 * System.out.println(contact.getConId());
-		 * System.out.println(contact.getConName());
-		 * System.out.println(contact.getConPhone());
-		 * System.out.println(contact.getConEmail());
-		 * 
-		 * }
-		 */
-
-		// Forwarding the list to document agenda.jsp
-
-		// Setting attribute in order to make contactsList accessible through agenda.jsp
 		request.setAttribute("contacts", contactsList);
-
-		// Dispatching list to document agenda.jsp
 
 		RequestDispatcher rd = request.getRequestDispatcher("agenda.jsp");
 
@@ -101,60 +102,47 @@ public class Controller extends HttpServlet {
 
 	}
 
+/**
+ * Insert contact.
+ *
+ * @param request the request
+ * @param response the response
+ * @throws IOException Signals that an I/O exception has occurred.
+ */
 //New Contact
-	protected void newContact(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// Form Data recognizing Test
+	protected void insertContact(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		/*
-		 * System.out.println(request.getParameter("name"));
-		 * System.out.println(request.getParameter("phone"));
-		 * System.out.println(request.getParameter("email"));
-		 */
-
-		// Setting JavaBeans Variables
 		contact.setConName(request.getParameter("name"));
 		contact.setConPhone(request.getParameter("phone"));
 		contact.setConEmail(request.getParameter("email"));
 
-		// Call on insertContact Method passing the Contact Object
 		dao.insertContact(contact);
 
-		// Redirect for the Document agenda.jsp
 		response.sendRedirect("main");
 
 	}
 
 //Contact Edition Method
 
-	protected void listContact(HttpServletRequest request, HttpServletResponse response)
+	/**
+ * List contact.
+ *
+ * @param request the request
+ * @param response the response
+ * @throws IOException Signals that an I/O exception has occurred.
+ * @throws ServletException the servlet exception
+ */
+protected void listContact(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		// Using a String Variable receiving the id Parameter from the Selected Contact
-		// sent by agenda.jsp
-		String conId = request.getParameter("conId");
-		// Testing specific Contact ID Parameter Received by the Servlet's Accuracy
-		// System.out.println(conId);
 
-		// Setting JavaBeans Variable after Test
-		contact.setConId(conId);
-		// Run selectContact Method
+		contact.setConId(request.getParameter("conId"));
+
 		dao.selectContact(contact);
-		// Test to confirm the Receipt of Selected Contact from DB through DAO and
-		// Javabeans by Controller
-		/*
-		 * System.out.println(contact.getConId());
-		 * System.out.println(contact.getConName());
-		 * System.out.println(contact.getConPhone());
-		 * System.out.println(contact.getConEmail());
-		 */
-
-		// Setting Form's Attributes Values with JavaBeans Content
 
 		request.setAttribute("id", contact.getConId());
 		request.setAttribute("name", contact.getConName());
 		request.setAttribute("phone", contact.getConPhone());
 		request.setAttribute("email", contact.getConEmail());
-
-		// Dispatching Attribute Sets to edit.jsp Document
 
 		RequestDispatcher rd = request.getRequestDispatcher("edit.jsp");
 
@@ -163,14 +151,16 @@ public class Controller extends HttpServlet {
 
 //Contact Update Method
 
-	protected void updateContact(HttpServletRequest request, HttpServletResponse response)
+	/**
+ * Update contact.
+ *
+ * @param request the request
+ * @param response the response
+ * @throws IOException Signals that an I/O exception has occurred.
+ * @throws ServletException the servlet exception
+ */
+protected void updateContact(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
-		// Testing specific Contact ID Parameter Received by the Servlet's Accuracy
-		// System.out.println(request.getParameter("id"));
-		// System.out.println(request.getParameter("name"));
-		// System.out.println(request.getParameter("phone"));
-		// System.out.println(request.getParameter("email"));
 
 		contact.setConId(request.getParameter("id"));
 		contact.setConName(request.getParameter("name"));
@@ -179,33 +169,41 @@ public class Controller extends HttpServlet {
 
 		dao.updateContact(contact);
 
-		// Redirecting to agenda.jsp Page with the respective Updated Data
 		response.sendRedirect("main");
 	}
 
-	// Contact Deletion Method
+// Contact Deletion Method
 
-	protected void deleteContact(HttpServletRequest request, HttpServletResponse response)
+	/**
+ * Delete contact.
+ *
+ * @param request the request
+ * @param response the response
+ * @throws IOException Signals that an I/O exception has occurred.
+ * @throws ServletException the servlet exception
+ */
+protected void deleteContact(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		String conId = request.getParameter("conId");
-		// Testing id Parameter Receipt from validator.js
-		// System.out.println(conId);
-
-		// Setting JavaBeans object id
-		contact.setConId(conId);
+		contact.setConId(request.getParameter("conId"));
 
 		dao.deleteContact(contact);
 
-		// Redirecting to agenda.jsp Page with the respective Update (Deletion) at the
-		// Data Table
 		response.sendRedirect("main");
 
 	}
 
-	// PDF Report Generation Method
+// PDF Report Generation Method
 
-	protected void generatePDFReport(HttpServletRequest request, HttpServletResponse response)
+	/**
+ * Generate PDF report.
+ *
+ * @param request the request
+ * @param response the response
+ * @throws IOException Signals that an I/O exception has occurred.
+ * @throws ServletException the servlet exception
+ */
+protected void generatePDFReport(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
 		// Generating a Document Object to access the Arguments and Methods of the
@@ -231,43 +229,42 @@ public class Controller extends HttpServlet {
 			// Adding Line Breakers
 			document.add(new Paragraph(" "));
 			document.add(new Paragraph(" "));
-			
+
 			// Creating a Contact Table
 
 			// OBS: Since in Java Web Projects the Reports are usually generated in a
 			// Dynamic way, I will create another Object whose type is PdfPTable, an IText
 			// PDF Library that allows Dynamic Table Management
-			
+
 			PdfPTable table = new PdfPTable(3);
-			
-			//Creating Header
+
+			// Creating Header
 			PdfPCell col1 = new PdfPCell(new Paragraph("Name"));
 			PdfPCell col2 = new PdfPCell(new Paragraph("Phone"));
 			PdfPCell col3 = new PdfPCell(new Paragraph("Email"));
-			
+
 			table.addCell(col1);
 			table.addCell(col2);
 			table.addCell(col3);
-			
-			//Seeding the Table with the Database Contacts
-			
+
+			// Seeding the Table with the Database Contacts
+
 			ArrayList<JavaBeans> list = dao.listContacts();
 			for (JavaBeans contact : list) {
-				
+
 				table.addCell(contact.getConName());
 				table.addCell(contact.getConPhone());
 				table.addCell(contact.getConEmail());
-				
-				
+
 			}
-			
-			
+
 			document.add(table);
-			
+
 			document.close();
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 	}

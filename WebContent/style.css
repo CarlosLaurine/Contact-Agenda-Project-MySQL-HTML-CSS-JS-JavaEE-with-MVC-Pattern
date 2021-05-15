@@ -1,9 +1,10 @@
-
 /*Setting charset pattern*/
 @charset "utf-8";
 
 /*Importing specific google text-font/family*/
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap')
+	;
 
 body {
 	font-family: 'Rajdhani', sans-serif;
@@ -11,16 +12,15 @@ body {
 	font-weight: 400;
 }
 
-h1{
+h1 {
 	color: #c8bfb6;
 }
 
 .homeTxt {
-	
 	margin-left: 1em;
 }
 
-.button1{
+.button1 {
 	text-decoration: none;
 	background-color: #c8bfb6;
 	margin: 0 1.5em;
@@ -28,12 +28,12 @@ h1{
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: 700;
-	border-radius:5px;
+	border-radius: 5px;
 	border: none;
 	cursor: pointer;
 }
 
-.button2{
+.button2 {
 	text-decoration: none;
 	background-color: #d51213;
 	margin: 0 1.5em;
@@ -41,40 +41,36 @@ h1{
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: 700;
-	border-radius:5px;
+	border-radius: 5px;
 	border: none;
 	cursor: pointer;
 }
 
-a:hover{
-	
+a:hover {
 	background-color: black;
 	color: #fff;
-	
 }
 
 .box1 {
 	width: 320px;
-	padding:5px;
-	margin-bottom:10px;
-	border:1px solid #c8bfb6;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #c8bfb6;
 	border-radius: 5px;
 }
 
 .box2 {
-
-	padding:5px;
-	margin-bottom:10px;
-	border:1px solid #c8bfb6;
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #c8bfb6;
 	border-radius: 5px;
 }
 
-#box3{
-	padding:5px;
-	margin-bottom:10px;
-	border:2px solid red;
+#box3 {
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 2px solid red;
 	border-radius: 5px;
-
 }
 
 #table {
@@ -90,17 +86,15 @@ a:hover{
 	color: #fff;
 }
 
-#table td{
+#table td {
 	border: 2px solid #ddd;
 	padding: 10px;
-	
 }
 
-td.id{
+td.id {
 	border: 2px solid #ddd;
 	padding: 10px;
 	text-align: center;
 	background-color: #c8bfb6;
 	color: #fff;
-	
 }

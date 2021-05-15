@@ -3,33 +3,33 @@
  *@author Carlos Pinho
  */
 
-function validate(){
-	
-	var name, phone;
-	
-	 name = formContact.name.value;
-	 phone = formContact.phone.value;
+function validate() {
 
-	if(name === ""){
-		
+	var name, phone;
+
+	name = formContact.name.value;
+	phone = formContact.phone.value;
+
+	if (name === "") {
+
 		alert("Fulfill the madatory Name Field!");
 		//Focus on Respective Text-Missing Box
 		formContact.name.focus();
 		return false;
-		
+
 	}
-	else if (phone === ""){
-		
+	else if (phone === "") {
+
 		alert("Fulfill the Madatory Phone Field!");
 		//Focus on Respective Text-Missing Box
 		formContact.phone.focus();
 		return false;
 	}
-	else{
+	else {
 		/* Submit Form */
 		document.forms["formContact"].submit();
 	}
-	
 
-	
+
+
 }
