@@ -20,7 +20,7 @@ function validate(){
 	}
 	else if (phone === ""){
 		
-		alert("Fulfill the madatory Phone Field!");
+		alert("Fulfill the Madatory Phone Field!");
 		//Focus on Respective Text-Missing Box
 		formContact.phone.focus();
 		return false;

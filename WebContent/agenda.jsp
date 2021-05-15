@@ -61,8 +61,11 @@
 			<td><%= contact.getConPhone() %></td>	
 			<td><%= contact.getConEmail() %></td>	
 			
-			<!-- Adding Edit Button to Each Contact Row -->
-			<td><a href="select?conId=<%=contact.getConId()%>" class="button1" > Edit </a></td>
+			<!-- Adding Edit/Delete Buttons to Each Contact Row -->
+			<td>
+				<a href="select?conId=<%=contact.getConId()%>" class="button1" > Edit </a>
+				<a href="javascript: confirmContact(<%=contact.getConId()%>)" class="button2" > Delete </a>
+			</td>
 		</tr>
 		
 		<%} %>
@@ -73,6 +76,8 @@
 	
 	
 	</table>
+
+<script src="scripts/confirmator.js"></script>
 
 </body>
 </html>
