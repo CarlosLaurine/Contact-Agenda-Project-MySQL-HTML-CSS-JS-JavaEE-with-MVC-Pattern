@@ -26,13 +26,13 @@ import model.JavaBeans;
 
 @WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report" })
 public class Controller extends HttpServlet {
-	
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The dao. */
 	DAO dao = new DAO();
-	
+
 	/** The contact. */
 	JavaBeans contact = new JavaBeans();
 
@@ -48,9 +48,9 @@ public class Controller extends HttpServlet {
 	/**
 	 * Do get.
 	 *
-	 * @param request the request
+	 * @param request  the request
 	 * @param response the response
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException      Signals that an I/O exception has occurred.
 	 * @throws ServletException the servlet exception
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -80,14 +80,14 @@ public class Controller extends HttpServlet {
 		}
 	}
 
-/**
- * Contacts.
- *
- * @param request the request
- * @param response the response
- * @throws IOException Signals that an I/O exception has occurred.
- * @throws ServletException the servlet exception
- */
+	/**
+	 * Contacts.
+	 *
+	 * @param request  the request
+	 * @param response the response
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
 //List Contacts
 	protected void contacts(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -102,13 +102,13 @@ public class Controller extends HttpServlet {
 
 	}
 
-/**
- * Insert contact.
- *
- * @param request the request
- * @param response the response
- * @throws IOException Signals that an I/O exception has occurred.
- */
+	/**
+	 * Insert contact.
+	 *
+	 * @param request  the request
+	 * @param response the response
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 //New Contact
 	protected void insertContact(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -125,14 +125,14 @@ public class Controller extends HttpServlet {
 //Contact Edition Method
 
 	/**
- * List contact.
- *
- * @param request the request
- * @param response the response
- * @throws IOException Signals that an I/O exception has occurred.
- * @throws ServletException the servlet exception
- */
-protected void listContact(HttpServletRequest request, HttpServletResponse response)
+	 * List contact.
+	 *
+	 * @param request  the request
+	 * @param response the response
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
+	protected void listContact(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
 		contact.setConId(request.getParameter("conId"));
@@ -152,14 +152,14 @@ protected void listContact(HttpServletRequest request, HttpServletResponse respo
 //Contact Update Method
 
 	/**
- * Update contact.
- *
- * @param request the request
- * @param response the response
- * @throws IOException Signals that an I/O exception has occurred.
- * @throws ServletException the servlet exception
- */
-protected void updateContact(HttpServletRequest request, HttpServletResponse response)
+	 * Update contact.
+	 *
+	 * @param request  the request
+	 * @param response the response
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
+	protected void updateContact(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
 		contact.setConId(request.getParameter("id"));
@@ -175,14 +175,14 @@ protected void updateContact(HttpServletRequest request, HttpServletResponse res
 // Contact Deletion Method
 
 	/**
- * Delete contact.
- *
- * @param request the request
- * @param response the response
- * @throws IOException Signals that an I/O exception has occurred.
- * @throws ServletException the servlet exception
- */
-protected void deleteContact(HttpServletRequest request, HttpServletResponse response)
+	 * Delete contact.
+	 *
+	 * @param request  the request
+	 * @param response the response
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
+	protected void deleteContact(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
 		contact.setConId(request.getParameter("conId"));
@@ -196,14 +196,14 @@ protected void deleteContact(HttpServletRequest request, HttpServletResponse res
 // PDF Report Generation Method
 
 	/**
- * Generate PDF report.
- *
- * @param request the request
- * @param response the response
- * @throws IOException Signals that an I/O exception has occurred.
- * @throws ServletException the servlet exception
- */
-protected void generatePDFReport(HttpServletRequest request, HttpServletResponse response)
+	 * Generate PDF report.
+	 *
+	 * @param request  the request
+	 * @param response the response
+	 * @throws IOException      Signals that an I/O exception has occurred.
+	 * @throws ServletException the servlet exception
+	 */
+	protected void generatePDFReport(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
 		// Generating a Document Object to access the Arguments and Methods of the
@@ -262,11 +262,14 @@ protected void generatePDFReport(HttpServletRequest request, HttpServletResponse
 
 			document.close();
 
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-
+		
+		
+	}	
+		
 	}
 
-}

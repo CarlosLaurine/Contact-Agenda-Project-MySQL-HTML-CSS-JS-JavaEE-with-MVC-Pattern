@@ -10,13 +10,13 @@ public class JavaBeans {
 
 	/** The con id. */
 	private String conId;
-	
+
 	/** The con name. */
 	private String conName;
-	
+
 	/** The con phone. */
 	private String conPhone;
-	
+
 	/** The con email. */
 	private String conEmail;
 
@@ -30,8 +30,8 @@ public class JavaBeans {
 	/**
 	 * Instantiates a new java beans.
 	 *
-	 * @param conId the con id
-	 * @param conName the con name
+	 * @param conId    the con id
+	 * @param conName  the con name
 	 * @param conPhone the con phone
 	 * @param conEmail the con email
 	 */
