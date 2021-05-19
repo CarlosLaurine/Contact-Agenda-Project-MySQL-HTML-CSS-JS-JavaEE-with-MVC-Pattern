@@ -23,10 +23,10 @@ public class DAO {
 	private String driver = "com.mysql.cj.jdbc.Driver";
 
 	/** The url. */
-	private String url = "jdbc:mysql://127.0.0.1:3306/agendaDB?useTimezone=true&serverTimezone=UTC";
+	private String url = "jdbc:mysql://mysql3000.mochahost.com/carlosl1_agendadb?useTimezone=true&serverTimezone=UTC";
 
 	/** The user. */
-	private String user = "root";
+	private String user = "carlosl1_crud";
 
 	/** The password. */
 	private String password = "Megadeth@3625";
