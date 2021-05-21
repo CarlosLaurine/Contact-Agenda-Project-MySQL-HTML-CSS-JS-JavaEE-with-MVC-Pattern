@@ -23,6 +23,9 @@ ArrayList<JavaBeans> contactsList = (ArrayList<JavaBeans>) request.getAttribute(
 </head>
 <body>
 
+<a href="index.jsp">Index</a>
+<a href="homepage.html">Home</a>
+
 	<br />
 	<h1 style="text-align: center" style="margin-top: 2em;">Contact
 		Agenda</h1>
